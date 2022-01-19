@@ -19,8 +19,8 @@ export default function NavBar() {
                 </NavDropdown>
                 </Nav>
                 <Nav>
-                <Nav.Link href="#deets">Iniciar sesión</Nav.Link>
-                <Nav.Link eventKey={2} href="#memes">
+                <Nav.Link href="/login">Iniciar sesión</Nav.Link>
+                <Nav.Link eventKey={2} href="/register">
                     Registrarse
                 </Nav.Link>
                 </Nav>
