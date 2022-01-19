@@ -1,11 +1,10 @@
-import axios from 'axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './Form.css'
+import createBook from '../services/bookService';
+import './AddBook.css'
 
 const AddBookView = () => {
 
-    const apiUrl = process.env.REACT_APP_API_URL
 
     const [book, setBook] = useState({
         title: "",
@@ -26,7 +25,7 @@ const AddBookView = () => {
     const handleSubmit = async (event) => {
         event.preventDefault()
         book.genre = book.genre.split(",")
-        const response = await axios.post(`${apiUrl}/books/book`, book)
+        const response = await createBook(book)
         navigate('/')
     }
 
