@@ -1,8 +1,11 @@
 import './Login.css'
 import {useState} from 'react'
-import login from '../services/authService';
+import { useNavigate } from 'react-router-dom'
+import {login} from '../services/authService';
 
 const LoginView = () => {
+
+    const navigate = useNavigate()
 
     const [user, setUser] = useState({
         email: "",
@@ -19,7 +22,12 @@ const LoginView = () => {
     const handleSubmit = async (event) => {
         event.preventDefault()
         const response = await login(user)
-        console.log(response)
+        console.log(response.data)
+        setUser({
+            email: '',
+            password: '',
+        })
+        navigate('/')
     }
 
     return (
