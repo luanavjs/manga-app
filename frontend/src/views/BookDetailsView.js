@@ -1,9 +1,11 @@
-import axios from "axios"
 import { useEffect, useState } from "react"
+import { Button } from "react-bootstrap"
 import { useParams } from "react-router-dom"
+import { isAuthenticated } from "../services/authService"
+import { getBookById } from "../services/bookService"
 
 export default function BookDetailsView() {
-    const apiUrl = process.env.REACT_APP_API_URL
+    const user = isAuthenticated()
     const [book, setBook] = useState([])
     const {id} = useParams()
 
@@ -12,7 +14,7 @@ export default function BookDetailsView() {
       }, [])
     
     const getBook = async () => {
-        const response =  await axios.get(`${apiUrl}/books/book/${id}`)
+        const response =  await getBookById(id)
         setBook(response.data)
     }
 
@@ -31,6 +33,9 @@ export default function BookDetailsView() {
                 </>
                 ))}
             </p>
+            { user.role === "ADMIN" && (
+                <Button variant="dark" href={`/editBook/${book._id}`}>Edit</Button>
+            )}
         </div>
     )
 }
