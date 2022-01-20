@@ -5,6 +5,9 @@ import HomeView from "./views/HomeView";
 import AddBookView from './views/AddBookView';
 import LoginView from './views/LoginView';
 import RegisterView from './views/RegisterView';
+import AuthRoute from './components/AuthRoute';
+import AdminRoute from './components/AdminRoute'
+import EditBookView from './views/EditBookView';
 
 function App() {
   
@@ -13,8 +16,13 @@ function App() {
       <NavBar/>
       <Routes>
         <Route path='/' element={<HomeView/>}/>
-        <Route path='/book/:id' element={<BookDetailsView/>}/>
-        <Route path='/addBook' element={<AddBookView/>}/>
+        <Route element={<AuthRoute/>}>
+          <Route path='/book/:id' element={<BookDetailsView/>}/>
+        </Route>
+        <Route element={<AdminRoute/>}>
+          <Route path='/addBook' element={<AddBookView/>}/>
+          <Route path='/editBook/:id' element={<EditBookView/>}/>
+        </Route>
         <Route path='/login' element={<LoginView/>}/>
         <Route path='/register' element={<RegisterView/>}/>
       </Routes>
