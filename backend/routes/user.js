@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const User = require('../models/User')
 const bcrypt = require('bcrypt')
+const { generateJwt } = require('../helpers/processJwt')
 
 
 router.get('/', async (req,res) => {
@@ -41,7 +42,8 @@ router.post('/login', async (req,res) => {
     if(!validPassword){
         return res.status(500).json({message: 'Error de autenticacion'})
     }
-    return res.status(200).json(user)
+    const token = await generateJwt(user._id)
+    return res.status(200).json({token,user})
 })
 
 module.exports = router
