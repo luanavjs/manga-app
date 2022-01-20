@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import createBook from '../services/bookService';
+import {createBook} from '../services/bookService';
 import './AddBook.css'
 
 const AddBookView = () => {
-
+    
+    const navigate = useNavigate()
 
     const [book, setBook] = useState({
         title: "",
@@ -13,7 +14,6 @@ const AddBookView = () => {
         numberOfPages: "",
         image: ""
     })
-    const navigate = useNavigate()
 
     const handleChange = (event) => {
         setBook({
