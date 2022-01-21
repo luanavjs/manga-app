@@ -3,6 +3,7 @@ import { Button } from "react-bootstrap"
 import { useParams } from "react-router-dom"
 import { isAuthenticated } from "../services/authService"
 import { getBookById } from "../services/bookService"
+import './BookDetails.css'
 
 export default function BookDetailsView() {
     const user = isAuthenticated()
@@ -21,21 +22,30 @@ export default function BookDetailsView() {
 
     return (
         <div className="container mt-5">
-            <h2>{book.title}</h2>
-            <h3>Autor: {book.author}</h3>
-            <h3>Volumenes: {book.numberOfPages}</h3>
-            <img style={{height:400}} src={book.image} alt="foto portada del manga"/>
-            <p>
-                {book.genre?.map((g, i) => (
-                <>
-                    <span key={i}>{g}</span>
-                    <br />
-                </>
-                ))}
-            </p>
-            { user.role === "ADMIN" && (
-                <Button variant="dark" href={`/editBook/${book._id}`}>Edit</Button>
-            )}
+            <div className="cardd">
+                <div className="card_info">
+                    <h2>{book.title}</h2>
+                    <h3>{book.author}</h3>
+                    <h3>Volumenes: {book.numberOfPages}</h3>
+                    <p>{book.description}</p>
+                    <div className="card_tags">
+                    {book.genre?.map((g, i) => (
+                    <>
+                        <p className="tags" key={i}>{g}</p>
+                    </>
+                    ))}
+                    </div>
+                { user.role === "ADMIN" && (
+                    <Button variant="outline-dark" href={`/editBook/${book._id}`}>Editar Manga</Button>
+                )}
+                </div>
+                <div className="card_img">
+                    <img style={{height:400}} src={book.image} alt="foto portada del manga"/>
+                </div>
+                
+                
+            </div>
+           
         </div>
     )
 }

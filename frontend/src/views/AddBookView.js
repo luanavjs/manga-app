@@ -12,7 +12,8 @@ const AddBookView = () => {
         author: "",
         genre: "",
         numberOfPages: "",
-        image: ""
+        image: "",
+        description: ""
     })
 
     const handleChange = (event) => {
@@ -60,6 +61,24 @@ const AddBookView = () => {
                     placeholder="Genero (separar por comas)" 
                     type="text"
                 />
+                
+                <input
+                    onChange={handleChange} 
+                    value={book.numberOfPages}
+                    name="numberOfPages"
+                    className="form-control" 
+                    placeholder="Volumenes" 
+                    type="text"
+                />
+
+                <input
+                    onChange={handleChange} 
+                    value={book.description}
+                    name="description"
+                    className="form-control" 
+                    placeholder="Descripción" 
+                    type="text"
+                />  
 
                 <input
                     onChange={handleChange} 
@@ -70,14 +89,7 @@ const AddBookView = () => {
                     type="text"
                 />
 
-                <input
-                    onChange={handleChange} 
-                    value={book.numberOfPages}
-                    name="numberOfPages"
-                    className="form-control" 
-                    placeholder="Volumenes" 
-                    type="text"
-                />
+                
 
                 <button onClick={handleSubmit} className="btn btn-outline-dark form-control">Crear</button>
             </form>

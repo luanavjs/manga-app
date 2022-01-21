@@ -20,3 +20,7 @@ export const createBook = (bookObj) => {
 export const editBook = (bookObj,id) => {
     const response = axios.put(`${apiUrl}/books/book/${id}`, bookObj)
 }
+
+export const deleteBook = (id) => {
+    axios.delete(`${apiUrl}/books/book/${id}`)
+}
