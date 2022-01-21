@@ -17,10 +17,13 @@ const BookSchema = Schema(
             required: true
         },
         image:{
-            type: String,
+            type: String
         },
         numberOfPages:{
             type: Number
+        },
+        description:{
+            type: String
         }
 
     }
