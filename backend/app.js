@@ -5,8 +5,7 @@
 
  const app = express()
 
- require('dotenv').config()
-
+require('dotenv').config()
 
  //configuro conexiones
 mongoose.connect(process.env.MONGODB_URI)
