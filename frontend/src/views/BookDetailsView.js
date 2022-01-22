@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react"
 import { Button } from "react-bootstrap"
 import { useParams } from "react-router-dom"
-import { isAuthenticated } from "../services/authService"
+import { useUser } from "../context/userProvider"
 import { getBookById } from "../services/bookService"
 import './BookDetails.css'
 
 export default function BookDetailsView() {
-    const user = isAuthenticated()
+    const {user, setUser} = useUser()
     const [book, setBook] = useState([])
     const {id} = useParams()
 
@@ -35,7 +35,7 @@ export default function BookDetailsView() {
                     </>
                     ))}
                     </div>
-                { user.role === "ADMIN" && (
+                { user && user.user && user.user.role === "ADMIN" && (
                     <Button variant="outline-dark" href={`/editBook/${book._id}`}>Editar Manga</Button>
                 )}
                 </div>

@@ -16,7 +16,7 @@ export const register = async (userObject) => {
 }
 
 export const isAuthenticated = () => {
-    if(typeof window == 'undefined'){ //mas seguridad (para que no se pueda hacer desde postman x ej)
+    if(typeof window == 'undefined'){ 
         return false
     }
     if (!localStorage.getItem(jwtString)) return false

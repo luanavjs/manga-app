@@ -1,10 +1,10 @@
 import { Outlet } from "react-router-dom";
-import { isAuthenticated } from "../services/authService";
+import { useUser } from "../context/userProvider";
 import LoginView from "../views/LoginView";
 
 const AuthRoute = () => {
-    const user = isAuthenticated()
-    return user ? <Outlet/> : <LoginView/>
+    const {user, setUser} = useUser()
+    return user && user.user ? <Outlet/> : <LoginView/>
 };
 
 export default AuthRoute;

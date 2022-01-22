@@ -1,6 +1,5 @@
 import { Container, Nav, Navbar, NavDropdown, Button } from 'react-bootstrap'
-import { isAuthenticated, logout } from '../services/authService'
-//EUGENE LINDEN 000314
+import { useUser } from '../context/userProvider'
 
 /***
  *  <NavDropdown title="Dropdown" id="collasible-nav-dropdown">
@@ -13,7 +12,8 @@ import { isAuthenticated, logout } from '../services/authService'
  */
 
 export default function NavBar() {
-    const user = isAuthenticated()
+    const {user, setUser} = useUser()
+    console.log("info de user",user)
     return (
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
             <Container>
@@ -21,18 +21,18 @@ export default function NavBar() {
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto">
-                { user.role === "ADMIN" && (    
+                { user && user.user && user.user.role === "ADMIN" && (    
                         <Nav.Link href="/addBook">Agregar Manga</Nav.Link>   
                     )
                 }
                 </Nav>     
                 <Nav>
-                    { user ? (
+                    { user && user.user ? (
                         <>
                         <h5 style={{color: 'white', marginRight: 20}}>
-                            {user.name}
+                            {user.user.name}
                         </h5 >
-                        <Button onClick={logout} variant="light" size="sm" className="btn btn-outline-dark">Cerrar sesión</Button>
+                        <Button onClick={()=>setUser(null)} variant="light" size="sm" className="btn btn-outline-dark">Cerrar sesión</Button>
                         </>
                     ) : (
                         <>

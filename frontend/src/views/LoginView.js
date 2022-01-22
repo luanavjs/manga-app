@@ -1,29 +1,33 @@
 import './Login.css'
 import {useState} from 'react'
 import { useNavigate } from 'react-router-dom'
-import {login} from '../services/authService';
+import {login} from '../services/authService'
+import { useUser } from '../context/userProvider'
 
 const LoginView = () => {
 
     const navigate = useNavigate()
-
-    const [user, setUser] = useState({
+    const {user, setUser} = useUser()
+    const [userr, setUserr] = useState({
         email: "",
         password: ""
     })
 
     const handleChange = (event) => {
-        setUser({
-            ...user,
+        setUserr({
+            ...userr,
             [event.target.name]: event.target.value
         })
     }
 
     const handleSubmit = async (event) => {
         event.preventDefault()
-        const response = await login(user)
+        const response = await login(userr)
         console.log(response.data)
-        setUser({
+        if(response.data){
+            setUser(response.data)
+        }
+        setUserr({
             email: '',
             password: '',
         })
@@ -36,7 +40,7 @@ const LoginView = () => {
             <h2>Iniciar sesión</h2>
             <input
                 onChange={handleChange}
-                value={user.email}
+                value={userr.email}
                 className="form-control" 
                 name="email"
                 type="text" 
@@ -44,7 +48,7 @@ const LoginView = () => {
             />
             <input 
                 onChange={handleChange}
-                value={user.password}
+                value={userr.password}
                 className="form-control" 
                 name="password"
                 type="password" 
