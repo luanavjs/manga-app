@@ -10,7 +10,7 @@ require('dotenv').config()
  //configuro conexiones
 mongoose.connect(process.env.MONGODB_URI)
     .then(()=> console.log("BDD conectada"))
-    .catch(()=> console.log("BDD no se pudo conectar"))
+    .catch((err)=> console.log("BDD no se pudo conectar",err))
 
 
  //configuro middlewares
