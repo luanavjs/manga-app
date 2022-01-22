@@ -1,1 +1,2 @@
-web:node backend/app.js
+api:node backend/app.js
+web:node frontend/index.js
