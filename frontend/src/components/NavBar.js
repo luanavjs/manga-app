@@ -16,8 +16,8 @@ export default function NavBar() {
     console.log("info de user",user)
     return (
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-            <Container>
-            <Navbar.Brand href="/">Manga App</Navbar.Brand>
+            <Container className="menu">
+            <Navbar.Brand style={{fontFamily: 'Nunito', fontWeight: 900}} href="/">MANGA APP</Navbar.Brand>
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto">
@@ -29,7 +29,7 @@ export default function NavBar() {
                 <Nav>
                     { user && user.user ? (
                         <>
-                        <h5 style={{color: 'white', marginRight: 20}}>
+                        <h5 className="menu_user" style={{color: 'white', marginRight: 20, fontFamily: 'Nunito', marginTop: 10}}>
                             {user.user.name}
                         </h5 >
                         <Button onClick={()=>setUser(null)} variant="light" size="sm" className="btn btn-outline-dark">Cerrar sesión</Button>

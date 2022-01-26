@@ -8,11 +8,11 @@ export default function BookCard({obj}) {
             <Card className="bookCard" style={{ width: '18rem' }}>
                 <img src={obj.image} />
                 <Card.Body>
-                    <Card.Title>{obj.title}</Card.Title>
+                    <Card.Title class="bookCard_title">{obj.title}</Card.Title>
                     <Card.Text>
                         {obj.author}
                     </Card.Text>
-                    <Link className="btn btn-outline-primary" to={`/book/${obj._id}`}>
+                    <Link className="btn btn-outline-dark" to={`/book/${obj._id}`}>
                         Ver más
                     </Link>
                 </Card.Body>

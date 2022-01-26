@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import BookCard from '../components/BookCard'
 import { getAllBooks } from '../services/bookService'
+import './Home.css'
 
 export default function HomeView() {
     
@@ -17,7 +18,6 @@ export default function HomeView() {
 
     return (
         <div className="container mt-5">
-        <h2>Home View</h2>
         <div className="conatiner">
             <div className="row">
             {books.map((book) => (
